@@ -1,0 +1,12 @@
+name: Hello World Workflow on Luffy self-runner
+
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: self-hosted
+    steps:
+    - name: Print Hello World
+      run: echo "Hello World , this test script is using for testing the yml in github actions, so my name is luffy"
+    - name: My custom action
+      uses: lyao-parasoft/run-soatest-action@test-luffy
