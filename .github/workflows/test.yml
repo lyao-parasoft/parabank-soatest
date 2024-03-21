@@ -1,7 +1,10 @@
 name: test-parabank-soatest-03/21
 
-on: [push]
-
+on: 
+ # push:
+    #branches: [ main ]
+    # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
 jobs:
   test-soatest:
     runs-on: self-hosted
