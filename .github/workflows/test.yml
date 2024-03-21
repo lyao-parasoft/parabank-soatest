@@ -3,7 +3,7 @@ name: test-parabank-soatest-03/21
 on: [push]
 
 jobs:
-  hello_world_job:
+  test-soatest:
     runs-on: self-hosted
     steps:
     - name: cd soatest directory
