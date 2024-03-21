@@ -19,7 +19,7 @@ jobs:
         workingDir: ./soatest
         testConfig: builtin://Demo Configuration
         resource: TestAssets
-        settings: parabank-soatest/soatest/localsettings.properties
+        settings: soatest/soatest/localsettings.properties
         report: report-parabank-soatest-action
         reportFormat: xml
         environment: 
