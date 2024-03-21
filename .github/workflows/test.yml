@@ -9,6 +9,9 @@ jobs:
   test-soatest:
     runs-on: self-hosted
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
     - name: My custom action
       uses: lyao-parasoft/run-soatest-action@test-luffy
       with:
