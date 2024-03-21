@@ -6,5 +6,7 @@ jobs:
   hello_world_job:
     runs-on: self-hosted
     steps:
+    - name: cd soatest directory
+      run: cd ./sotest
     - name: My custom action
       uses: lyao-parasoft/run-soatest-action@test-luffy
