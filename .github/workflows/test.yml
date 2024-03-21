@@ -26,3 +26,5 @@ jobs:
         convertReportToXUnit: false
         javaRootPath: C:/Program Files/Java/jdk-11/bin
         additionalParams:
+          -include **/*.tst
+        
