@@ -17,7 +17,7 @@ jobs:
       with:
         installDir: C:/Program Files/Parasoft/SOAtest_Virtualize/2023.2
         testConfig: builtin://Demo Configuration
-        workingDir: ./soatest
+        workingDir: soatest
         resource: TestAssets
         settings: localsettings.properties
         report: report-parabank-soatest-action
