@@ -22,7 +22,7 @@ jobs:
         report: report-parabank-soatest-action
         reportFormat: xml
         environment: 
-        convertReportToXUnit: true
+        #convertReportToXUnit: true
         javaRootPath: C:/Program Files/Java/jdk-11
         additionalParams:
           -include **/*.tst
