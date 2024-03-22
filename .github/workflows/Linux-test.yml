@@ -25,5 +25,5 @@ jobs:
         convertReportToXUnit: true
         javaRootPath: /usr
         additionalParams:
-         -include PB-WebUI-v3.tst
+         -include *.tst
         
