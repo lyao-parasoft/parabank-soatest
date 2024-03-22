@@ -25,5 +25,5 @@ jobs:
         convertReportToXUnit: true
         javaRootPath: C:/Program Files/Java/jdk-11
         additional params:
-          -include PB-ParabankServices-v3.tst
+         -include TestAssets/PB-ParabankServices-v3.tst
         
