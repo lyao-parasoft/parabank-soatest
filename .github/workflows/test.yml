@@ -14,7 +14,7 @@ jobs:
     - name: My custom action
       uses: lyao-parasoft/run-soatest-action@test-luffy
       with:
-        installDir: C:/Program Files/Parasoft/SOAtest_Virtualize/2023.2
+        installDir: /home/devtest/soa/parasoft/soatest_virtualize/2023.2
         workingDir: ${{ github.workspace }}/soatest
         testConfig: builtin://Demo Configuration
         resource: TestAssets
@@ -22,7 +22,7 @@ jobs:
         report: report-parabank-soatest-action
         reportFormat: xml
         environment: 
-        convertReportToXUnit: false
+        convertReportToXUnit: true
         javaRootPath: C:/Program Files/Java/jdk-11
         additionalParams:
           -include **/*.tst
