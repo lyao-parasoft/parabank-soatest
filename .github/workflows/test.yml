@@ -11,11 +11,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    
-    - name: My custom action
-      uses: lyao-parasoft/run-soatest-action@test-luffy
     - name: node test
       run: node -v
+    - name: My custom action
+      uses: lyao-parasoft/run-soatest-action@test-luffy
       with:
         installDir: C:/Program Files/Parasoft/SOAtest_Virtualize/2023.2
         workingDir: ${{ github.workspace }}/soatest
