@@ -14,6 +14,8 @@ jobs:
     
     - name: My custom action
       uses: lyao-parasoft/run-soatest-action@test-luffy
+    - name: node test
+      run: node -v
       with:
         installDir: C:/Program Files/Parasoft/SOAtest_Virtualize/2023.2
         workingDir: ${{ github.workspace }}/soatest
