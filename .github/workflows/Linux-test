@@ -1,4 +1,4 @@
-name: test-parabank-soatest-03/21
+name: test-parabank-soatest-03/22-linux
 
 on: 
  # push:
@@ -23,7 +23,7 @@ jobs:
         reportFormat: xml
         environment: 
         convertReportToXUnit: true
-        javaRootPath: C:/Program Files/Java/jdk-11
+        javaRootPath: /usr
         additionalParams:
           -include **/*.tst
         
