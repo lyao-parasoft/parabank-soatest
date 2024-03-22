@@ -24,6 +24,6 @@ jobs:
         environment: 
         convertReportToXUnit: true
         javaRootPath: /usr
-        # additionalParams:
-         # -include **/*.tst
+        additionalParams:
+         -include TestAssets/PB-WebUI-v3.tst
         
