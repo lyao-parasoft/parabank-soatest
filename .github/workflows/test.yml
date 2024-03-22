@@ -24,6 +24,6 @@ jobs:
         environment: 
         convertReportToXUnit: true
         javaRootPath: C:/Program Files/Java/jdk-11
-        additional params:
-         -include PB-WebUI-v3.tst
+        additionalParams:
+         -include **/PB-WebUI-v3.tst
         
