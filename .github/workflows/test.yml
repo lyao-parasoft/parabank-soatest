@@ -17,7 +17,7 @@ jobs:
       with:
         # installDir: C:/Program Files/Parasoft/SOAtest_Virtualize/2023.2
         #workingDir: ${{ github.workspace }}/soatest
-        testConfig: builtin://Demo Configuration
+        ##testConfig: builtin://Demo Configuration
         resource: TestAssets
         settings: localsettings.properties
         report: report-parabank-soatest-action
