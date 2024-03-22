@@ -24,7 +24,7 @@ jobs:
         reportFormat: xml
         environment: 
         # convertReportToXUnit: false
-        # javaRootPath: C:/Program Files/Java/jdk-11/bin
+        javaRootPath: C:/Program Files/Java/jdk-11/bin
         additionalParams:
           -include **/*.tst
         
