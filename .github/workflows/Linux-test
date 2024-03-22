@@ -1,0 +1,29 @@
+name: test-parabank-soatest-03/21
+
+on: 
+ # push:
+    #branches: [ main ]
+    # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
+jobs:
+  test-soatest:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: My custom action
+      uses: lyao-parasoft/run-soatest-action@test-luffy
+      with:
+        installDir: /home/devtest/soa/parasoft/soatest_virtualize/2023.2
+        workingDir: ${{ github.workspace }}/soatest
+        testConfig: builtin://Demo Configuration
+        resource: TestAssets
+        settings: localsettings.properties
+        report: report-parabank-soatest-action
+        reportFormat: xml
+        environment: 
+        convertReportToXUnit: true
+        javaRootPath: C:/Program Files/Java/jdk-11
+        additionalParams:
+          -include **/*.tst
+        
