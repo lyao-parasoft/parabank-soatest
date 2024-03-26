@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: My custom action
-      uses: lyao-parasoft/run-soatest-action@test-luffy
+      uses: lyao-parasoft/run-soatest-action@master
       with:
         installDir: /home/devtest/soa/parasoft/soatest_virtualize/2023.2
         workingDir: ${{ github.workspace }}/soatest
