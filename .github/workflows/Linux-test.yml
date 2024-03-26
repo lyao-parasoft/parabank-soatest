@@ -23,7 +23,6 @@ jobs:
         reportFormat: xml
         environment: 
         convertReportToXUnit: true
-        #javaRootPath: /usr
         additionalParams:
          -include *.tst
         
