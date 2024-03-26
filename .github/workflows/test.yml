@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: My custom action
-      uses: lyao-parasoft/run-soatest-action@test-luffy
+      uses: lyao-parasoft/run-soatest-action@master
       with:
         installDir: C:\Program Files\Parasoft\SOAtest_Virtualize\2023.2
         workingDir: ${{ github.workspace }}/soatest
@@ -25,5 +25,5 @@ jobs:
         convertReportToXUnit: true
         javaRootPath: C:/Program Files/Java/jdk-11
         additionalParams:
-         -include **/PB-WebUI-v3.tst
+         -include **/*.tst
         
