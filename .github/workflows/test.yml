@@ -15,11 +15,11 @@ jobs:
       uses: lyao-parasoft/run-soatest-action@master
       with:
         installDir: C:\Program Files\Parasoft\SOAtest_Virtualize\2023.2
-        soatestWorkspace: soatest
+        soatestWorkspace: ${{ github.workspace }}
         testConfig: builtin://Demo Configuration
-        resource: TestAssets
+        resource: soatest/TestAssets
         settings: soatest/localsettings.properties
-        report: report-parabank-soatest-action
+        report: soatest/report-parabank-soatest-action
         reportFormat: xml
         environment: ../../test-env.env
         convertReportToXUnit: true
