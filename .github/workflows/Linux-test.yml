@@ -23,6 +23,6 @@ jobs:
         reportFormat: xml
         #environment: 
         convertReportToXUnit: true
-        additional params:
+        additionalParams:
          -include *.tst
         
