@@ -15,7 +15,7 @@ jobs:
       uses: lyao-parasoft/run-soatest-action@master
       with:
         installDir: /home/devtest/soa/parasoft/soatest_virtualize/2023.2
-       soatestWorkspace: soatest
+        soatestWorkspace: soatest
         testConfig: builtin://Demo Configuration
         resource: TestAssets
         settings: soatest/localsettings.properties
