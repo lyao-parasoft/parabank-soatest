@@ -18,7 +18,7 @@ jobs:
         soatestWorkspace: D:\Github-runner\parabank-soatest-runner\_work\parabank-soatest\parabank-soatest\soa test
         #${{ github.workspace }}/soa test/D:\Github-runner\parabank-soatest-runner\_work
         testConfig: builtin://Demo Configuration
-        resource: D:\Github-runner\parabank-soatest-runner\_work\parabank-soatest\parabank-soatest\soa test\TestAssets
+        resource: TestAssets
         settings: soatest/localsettings.properties
         report: 'soatest/report-parabank soatest-action'
         reportFormat: XML
