@@ -21,9 +21,9 @@ jobs:
         settings: soatest/localsettings.properties
         report: soatest/report-parabank-soatest-action
         reportFormat: xml
-        #environment: ../../test-env.env
+        environment: ../../test-env.env
         convertReportToXUnit: true
         # javaRootPath: C:/Program Files/Java/jdk-11
-        additionalParams:
-         -include PB-ParabankServices-v3.tst
+        #additionalParams:
+         #-include PB-ParabankServices-v3.tst
         
