@@ -20,7 +20,7 @@ jobs:
         testConfig: builtin://Demo Configuration
         resource: " "
         settings: soatest/localsettings.properties
-        report: report-soatest/report.xml
+        report: report-soatest/report
         reportFormat: " "
         environment: ../../test-env.env
         convertReportToXUnit: TRUE
