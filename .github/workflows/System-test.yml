@@ -18,7 +18,7 @@ jobs:
         soatestWorkspace: ${{ github.workspace }}/soatest
         testConfig: builtin://Demo Configuration
         resource: TestAssets
-        settings: soatest/localsettings.properties
+        settings: soatest/local settings.properties
         report: 'soatest/report-parabank soatest-action'
         reportFormat: XML
         environment: ../../test-env.env
