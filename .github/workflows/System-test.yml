@@ -17,8 +17,8 @@ jobs:
         #installDir: C:\Program Files\Parasoft\SOAtest_Virtualize\2023.2
         soatestWorkspace: ${{ github.workspace }}/soatest
         testConfig: builtin://Demo Configuration
-        #resource: TestAssets
-        settings: soatest/localsettings.properties
+        resource: TestAssets
+        #settings: soatest/localsettings.properties
         report: soatest/report-parabank-soatest-action
         reportFormat: xml
         environment: ../../test-env.env
