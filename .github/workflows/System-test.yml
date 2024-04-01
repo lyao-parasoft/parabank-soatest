@@ -19,8 +19,8 @@ jobs:
         testConfig: builtin://Demo Configuration
         resource: TestAssets
         settings: soatest/localsettings.properties
-        report: soatest/report-parabank&soatest-action
-        reportFormat: pdf
+        report: 'soatest/report-parabank soatest-action'
+        reportFormat: XML
         environment: ../../test-env.env
         convertReportToXUnit: true
         # javaRootPath: C:/Program Files/Java/jdk-11
