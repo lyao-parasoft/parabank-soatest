@@ -15,7 +15,7 @@ jobs:
       uses: lyao-parasoft/run-soatest-action@master
       with:
         installDir: C:/Program Files\\Parasoft/SOAtest&Virtualize/2023.2
-        soatestWorkspace: ${{ github.workspace }}/'soa test'
+        soatestWorkspace: ${{ github.workspace }}/soa test
         testConfig: builtin://Demo Configuration
         resource: TestAssets
         settings: soatest/localsettings.properties
