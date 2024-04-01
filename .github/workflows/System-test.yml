@@ -24,7 +24,7 @@ jobs:
         reportFormat: " "
         environment: ../../test-env.env
         convertReportToXUnit: TRUE
-        # javaRootPath: C:/Program Files/Java/jdk-11
+        javaRootPath: C:/Program Files/Java/jdk-11
         additionalParams:
          -include PB-ParabankServices-v3.tst
         
