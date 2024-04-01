@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.parasoft.sonar</groupId>
+  <artifactId>soatest-maven-plugin</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>parabank-soatest-tests-maven</name>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.parasoft</groupId>
+          <artifactId>soatest-maven-plugin</artifactId>
+          <version>1.0.0</version>
+        </plugin>
+		<plugin>
+		    <groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.10.0.2594</version>
+		</plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>com.parasoft</groupId>
+        <artifactId>soatest-maven-plugin</artifactId>
+        <configuration>
+            <soatestHome>C:/Program Files/Parasoft/SOAtest_Virtualize/2023.2</soatestHome>
+            <config>soatest.builtin://Demo Configuration</config>
+            <settings>${project.basedir}/localsettings.properties</settings>
+            <showsettings>true</showsettings>
+            <report>report-parabank</report>
+            <resources>
+              <resource>TestAssets</resource>
+            </resources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
