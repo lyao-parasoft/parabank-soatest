@@ -14,7 +14,7 @@ jobs:
     - name: run-soatest-action
       uses: lyao-parasoft/run-soatest-action@master
       with:
-        #installDir: C:\Program Files\Parasoft\SOAtest_Virtualize\2023.2
+        installDir: C:\Program Files\Parasoft\SOAtest_Virtualize\2023.2
         soatestWorkspace: ${{ github.workspace }}/soatest
         testConfig: builtin://Demo Configuration
         resource: TestAssets
@@ -24,6 +24,6 @@ jobs:
         environment: ../../test-env.env
         convertReportToXUnit: true
         # javaRootPath: C:/Program Files/Java/jdk-11
-        #additionalParams:
-         #-include PB-ParabankServices-v3.tst
+        additionalParams:
+         -include PB-ParabankServices-v3.tst
         
