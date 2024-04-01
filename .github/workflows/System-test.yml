@@ -26,5 +26,5 @@ jobs:
         convertReportToXUnit: true
         # javaRootPath: C:/Program Files/Java/jdk-11
         additionalParams:
-         -include D:\Github-runner\parabank-soatest-runner\_work\parabank-soatest\parabank-soatest\soa test\TestAssets\PB-ParabankServices-v3.tst
+         -include D:\Github-runner\parabank-soatest-runner\_work\parabank-soatest\parabank-soatest\soatest\TestAssets\PB-ParabankServices-v3.tst
         
