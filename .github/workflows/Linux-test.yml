@@ -20,7 +20,7 @@ jobs:
         resource: TestAssets
         settings: soatest/localsettings.properties
         report: reports/report
-        reportFormat: xml
+        reportFormat: md
         #environment: 
         convertReportToXUnit: True
         additionalParams:
