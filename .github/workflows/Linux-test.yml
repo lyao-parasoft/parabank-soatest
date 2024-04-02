@@ -1,4 +1,4 @@
-name: test-parabank-soatest-03/22-linux
+name: test-parabank-soatest-linux
 
 on: 
  # push:
