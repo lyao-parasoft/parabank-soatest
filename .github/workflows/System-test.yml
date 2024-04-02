@@ -14,7 +14,7 @@ jobs:
     - name: run-soatest-action
       uses: lyao-parasoft/run-soatest-action@master
       with:
-        #installDir: /home/devtest/soa/para soft/soatest_virtualize/2023.2
+        installDir: /home/devtest/soa/para soft/soatest_virtualize/2023.2
         soatestWorkspace:  ${{ github.workspace }}/soatest
         #${{ github.workspace }}/soa test/D:\Github-runner\parabank-soatest-runner\_work
         testConfig: builtin://Demo Configuration
