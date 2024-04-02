@@ -19,7 +19,7 @@ jobs:
         testConfig: builtin://Demo Configuration
         resource: TestAssets
         settings: soatest/localsettings.properties
-        report: soatest/report-parabank-soatest-action
+        report: soatest/reports/report.xml
         reportFormat: xml
         #environment: 
         convertReportToXUnit: true
