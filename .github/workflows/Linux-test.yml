@@ -19,10 +19,10 @@ jobs:
         testConfig: builtin://Demo Configuration
         resource: TestAssets
         settings: soatest/localsettings.properties
-        report: soatest/reports/report-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122222222222222222222
+        report: reports/report
         reportFormat: xml
         #environment: 
-        #convertReportToXUnit: True
+        convertReportToXUnit: True
         additionalParams:
          -include Smoke.tst
         
