@@ -19,7 +19,7 @@ jobs:
         testConfig: builtin://Demo Configuration
         resource: TestAssets
         settings: soatest/localsettings.properties
-        report: soatest/reports/report.xml
+        report: soatest/reports/report.pdf
         reportFormat: xml
         #environment: 
         convertReportToXUnit: true
