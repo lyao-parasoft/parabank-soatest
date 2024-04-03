@@ -20,7 +20,7 @@ jobs:
         testConfig: builtin://Demo Configuration
         resource: TestAssets
         settings: soatest/localsettings.properties
-        report: ""
+        #report: ""
         #soatest/reports/report.xml
         reportFormat: " "
         environment: ../../test-env.env
