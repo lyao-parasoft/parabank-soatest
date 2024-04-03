@@ -23,7 +23,7 @@ jobs:
         #report: ""
         #soatest/reports/report.xml
         reportFormat: " "
-        environment: ../../test-env.env
+        environment: ../../test-env
         convertReportToXUnit: TRUE
         #javaRootPath: C:/Program Files/Java/jdk-11
         additionalParams:
