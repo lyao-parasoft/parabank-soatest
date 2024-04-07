@@ -18,14 +18,14 @@ jobs:
         soatestWorkspace:  ${{ github.workspace }}/soatest
         #${{ github.workspace }}/soa test/D:\Github-runner\parabank-soatest-runner\_work
         testConfig: builtin://Demo Configuration
-        resource: TestAssets
+        resource: TestAssets/PB-ParabankServices-v3.tst
         settings: soatest/localsettings.properties
         #report: ""
         #soatest/reports/report.xml
-        reportFormat: " "
+        reportFormat: xml
         environment: ../../test-env
         convertReportToXUnit: TRUE
         #javaRootPath: C:/Program Files/Java/jdk-11
-        additionalParams:
-         -include PB-ParabankServices-v3.tst
+        #additionalParams:
+         #-include PB-ParabankServices-v3.tst
         
