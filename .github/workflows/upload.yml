@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: reports
-          path: soatest\reports
+          path: reports
  
   publish:
     name: Publish Reports
@@ -53,4 +53,4 @@ jobs:
         if: always()
         with:
           files: |
-            soatest\reports\*-xunit.xml
+             reports\*-xunit.xml
