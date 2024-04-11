@@ -5,6 +5,11 @@ on:
     #branches: [ main ]
     # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
+permissions:
+   checks: write
+   pull-requests: write
+   contents: read
+   issues: read
 jobs:
   test-soatest:
     runs-on: self-hosted
@@ -12,7 +17,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: run-soatest-action
-      uses: lyao-parasoft/run-soatest-action@master
+      uses: parasoft/run-soatest-action@1.0.0
       with:
         installDir: C:\Program Files\Parasoft\SOAtest&Virtualize\2023.2
         soatestWorkspace:  ${{ github.workspace }}/soatest
@@ -25,7 +30,10 @@ jobs:
         convertReportToXUnit: TRUE
         additionalParams:
          -include PB-ParabankServices-v3.tst
- 
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12.2
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action/windows@v2
       with:
