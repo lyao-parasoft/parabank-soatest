@@ -13,6 +13,10 @@ permissions:
 jobs:
   test-soatest:
     runs-on: self-hosted
+    env:
+      APPDATA: "C:/Users/ysl13/AppData/Roaming"
+      ProgramData: "C:/ProgramData"
+      USERPROFILE: "C:/Users/ysl13"
     steps:
     - name: Checkout
       uses: actions/checkout@v2
