@@ -30,7 +30,7 @@ jobs:
         convertReportToXUnit: TRUE
         additionalParams:
          -include PB-ParabankServices-v3.tst
-    - run: 
+    - run: |
         set APPDATA="C:/Users/ysl13/AppData/Roaming"
         set ProgramData="C:/ProgramData"
         set USERPROFILE="C:/Users/ysl13"
