@@ -30,12 +30,12 @@ jobs:
         convertReportToXUnit: TRUE
         additionalParams:
          -include PB-ParabankServices-v3.tst
-    - run: |
-        set APPDATA="C:/Users/ysl13/AppData/Roaming"
-        set ProgramData="C:/ProgramData"
-        set USERPROFILE="C:/Users/ysl13"
     - name: Setup Python
       uses: actions/setup-python@v5
+      env:
+        APPDATA: "C:/Users/ysl13/AppData/Roaming"
+        ProgramData: "C:/ProgramData"
+        USERPROFILE: "C:/Users/ysl13"
       with:
         python-version: 3.12.2
     - name: Publish Test Results
