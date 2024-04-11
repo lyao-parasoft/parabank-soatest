@@ -16,7 +16,6 @@ jobs:
       with:
         installDir: C:\Program Files\Parasoft\SOAtest&Virtualize\2023.2
         soatestWorkspace:  ${{ github.workspace }}/soatest
-        #${{ github.workspace }}/soa test/D:\Github-runner\parabank-soatest-runner\_work
         testConfig: builtin://Demo Configuration
         resource: TestAssets/PB-ParabankServices-v3.tst
         settings: soatest/localsettings.properties
@@ -24,7 +23,13 @@ jobs:
         reportFormat: xml
         environment: ../../test-env
         convertReportToXUnit: TRUE
-        #javaRootPath: C:/Program Files/Java/jdk-11
         additionalParams:
          -include PB-ParabankServices-v3.tst
+ 
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/windows@v2
+      with:
+       files: |
+        soatest\reports\*-xunit.xml
+
         
