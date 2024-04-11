@@ -20,7 +20,7 @@ jobs:
         testConfig: builtin://Demo Configuration
         resource: TestAssets/PB-ParabankServices-v3.tst
         settings: soatest/localsettings.properties
-        report: soatest/reports/report.xml
+        report: soatest/reports
         reportFormat: xml
         environment: ../../test-env
         convertReportToXUnit: TRUE
