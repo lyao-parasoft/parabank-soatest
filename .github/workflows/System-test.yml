@@ -30,6 +30,10 @@ jobs:
         convertReportToXUnit: TRUE
         additionalParams:
          -include PB-ParabankServices-v3.tst
+    - run: 
+        export APPDATA="C:/Users/ysl13/AppData/Roaming"
+        export ProgramData="C:/ProgramData"
+        export USERPROFILE="C:/Users/ysl13"
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
