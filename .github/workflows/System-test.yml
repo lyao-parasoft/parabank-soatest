@@ -30,7 +30,7 @@ jobs:
         settings: soatest/localsettings.properties
         report: soatest/reports
         reportFormat: xml
-        environment: ../../test-env
+        environment: ../../../test-env
         convertReportToXUnit: TRUE
         additionalParams:
          -include PB-ParabankServices-v3.tst
