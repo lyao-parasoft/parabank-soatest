@@ -13,10 +13,6 @@ permissions:
 jobs:
   test-soatest:
     runs-on: self-hosted
-    env:
-      APPDATA: "C:/Users/ysl13/AppData/Roaming"
-      ProgramData: "C:/ProgramData"
-      USERPROFILE: "C:/Users/ysl13"
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -34,10 +30,6 @@ jobs:
         convertReportToXUnit: TRUE
         additionalParams:
          -include PB-ParabankServices-v3.tst
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action/windows@v2
-      with:
-       files: |
-        soatest\reports\*-xunit.xml
+
 
         
