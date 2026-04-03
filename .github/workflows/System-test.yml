@@ -19,7 +19,7 @@ jobs:
     - name: run-soatest-action
       uses: parasoft/run-soatest-action@1.0.0
       with:
-        installDir: C:\Program Files\Parasoft\SOAtest&Virtualize\2023.2
+        installDir: C:\Program Files\Parasoft\SOAtest & Virtualize\2025.3
         soatestWorkspace:  ${{ github.workspace }}/soatest
         testConfig: builtin://Demo Configuration
         resource: TestAssets/PB-ParabankServices-v3.tst
