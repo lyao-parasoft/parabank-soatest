@@ -21,7 +21,7 @@ jobs:
       - name: Run local action
         uses: Parasoft/run-soatest-action@master
         with:
-          installDir: C:\Program Files\Parasoft\SOAtest&Virtualize\2023.2
+          installDir: C:\Program Files\Parasoft\SOAtest & Virtualize\2025.3
           soatestWorkspace: 'soatest'
  
       - name: Upload report artifact
