@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with the Run Jtest action.
-name: Run SOAtest Action
+name: cicd-1123
  
 on:
   #push:
