@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: reports
-          path: reports
+          path: cicd-1123\no-unit-test-reports
  
   publish:
     name: Publish Reports
@@ -53,4 +53,4 @@ jobs:
         if: always()
         with:
           files: |
-             reports\report-xunit.xml
+             cicd-1123\no-unit-test-reports\report-xunit.xml
