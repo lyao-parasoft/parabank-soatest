@@ -23,13 +23,13 @@ jobs:
         #uses: parasoft/run-soatest-action@1.0.1
         with:
           installDir: C:\Program Files\Parasoft\SOAtest & Virtualize\2026.1
-          soatestWorkspace: 'cicd-1154'
+          soatestWorkspace: 'cicd-1123'
  
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
         with:
           name: reports
-          path: cicd-1154\no-unit-test-reports
+          path: cicd-1123\no-unit-test-reports
  
   publish:
     name: Publish Reports
@@ -54,4 +54,4 @@ jobs:
         if: always()
         with:
           files: |
-             cicd-1154\no-unit-test-reports\report-xunit.xml
+             cicd-1123\no-unit-test-reports\report-xunit.xml
