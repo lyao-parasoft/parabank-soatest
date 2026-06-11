@@ -49,6 +49,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: reports
+          path: reports
       - name: Upload results
         uses: EnricoMi/publish-unit-test-result-action/windows@v2
         if: always()
