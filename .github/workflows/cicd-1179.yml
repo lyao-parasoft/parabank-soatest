@@ -55,4 +55,4 @@ jobs:
         if: always()
         with:
           files: |
-             reports\report-cicd-1179.xml
+             reports\report-xunit.xml
