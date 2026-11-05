@@ -19,11 +19,11 @@ jobs:
         uses: actions/checkout@v4
  
       - name: Run local action
-        uses: Parasoft/run-soatest-action@master
+        uses: parasoft/run-soatest-action@master
         #uses: parasoft/run-soatest-action@1.0.1
         with:
           installDir: C:\Program Files\Parasoft\SOAtest & Virtualize\2026.1
-          soatestWorkspace: 'soatest'
+          soatestWorkspace: 'cicd-1179'
  
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
