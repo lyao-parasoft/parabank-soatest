@@ -1,5 +1,5 @@
 name: ParaBank SOAtest action test
-run-name: 'ParaBank SOAtest upgrade_dependency / 20261126T093026285Z-628fabee'
+run-name: 'ParaBank SOAtest master / 20261126T103708464Z-1897a34c'
 
 on:
   push:
@@ -21,14 +21,15 @@ on:
 
 permissions:
   contents: read
+  checks: write
 
 concurrency:
   group: parabank-soatest-local-runner
   cancel-in-progress: false
 
 env:
-  ACTION_UNDER_TEST: 'parasoft/run-soatest-action@upgrade_dependency'
-  VALIDATION_RUN_ID: '20261126T093026285Z-628fabee'
+  ACTION_UNDER_TEST: 'parasoft/run-soatest-action@master'
+  VALIDATION_RUN_ID: '20261126T103708464Z-1897a34c'
   EXPECTED_RUNNER: 'CD-LYAO-02'
   SOATEST_INSTALL_DIR: 'C:\Program Files\Parasoft\SOAtest & Virtualize\2026.2'
   SOATEST_SUITE: ${{ inputs.suite || 'Smoke.tst' }}
@@ -97,7 +98,7 @@ jobs:
 
       - name: Run SOAtest action under test
         id: soatest
-        uses: parasoft/run-soatest-action@upgrade_dependency
+        uses: parasoft/run-soatest-action@master
         with:
           installDir: ${{ env.SOATEST_INSTALL_DIR }}
           soatestWorkspace: ${{ github.workspace }}/.runtime/soatest-workspace
@@ -113,6 +114,15 @@ jobs:
 
       - name: Verify execution and xUnit report
         run: ./scripts/Test-Reports.ps1
+
+      - name: Publish test results to GitHub Checks
+        if: ${{ always() && steps.soatest.outcome == 'success' }}
+        uses: dorny/test-reporter@v1
+        with:
+          name: SOAtest system test results
+          path: .runtime/reports/ci/report-xunit.xml
+          reporter: java-junit
+          fail-on-error: 'true'
 
       - name: Stop ParaBank started by this run
         if: always()
