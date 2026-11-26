@@ -1,0 +1,135 @@
+name: ParaBank SOAtest action test
+run-name: 'ParaBank SOAtest master / 20261126T082304690Z-bac562fd'
+
+on:
+  push:
+    branches: ['master'] # action-test-branch
+    paths:
+      - '.github/workflows/action-test.yml'
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'SOAtest suite (coverage suites require the coverage agent)'
+        type: choice
+        default: Smoke.tst
+        options:
+          - Smoke.tst
+          - PB-ParabankServices-v3.tst
+          - PB-WebUI-v3.tst
+          - PB-Bookstore1.tst
+          - PB-Bookstore2.tst
+
+permissions:
+  contents: read
+
+concurrency:
+  group: parabank-soatest-local-runner
+  cancel-in-progress: false
+
+env:
+  ACTION_UNDER_TEST: 'parasoft/run-soatest-action@master'
+  VALIDATION_RUN_ID: '20261126T082304690Z-bac562fd'
+  EXPECTED_RUNNER: 'CD-LYAO-02'
+  SOATEST_INSTALL_DIR: 'C:\Program Files\Parasoft\SOAtest & Virtualize\2026.2'
+  SOATEST_SUITE: ${{ inputs.suite || 'Smoke.tst' }}
+
+jobs:
+  test-soatest:
+    runs-on: [self-hosted, Windows, X64, CD-LYAO-02]
+    timeout-minutes: 40
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check runner and SOAtest installation
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($env:RUNNER_NAME -ne $env:EXPECTED_RUNNER) { throw "Unexpected runner: $env:RUNNER_NAME" }
+          if (-not (Test-Path (Join-Path $env:SOATEST_INSTALL_DIR 'soatestcli.exe'))) {
+            throw "SOAtest CLI not found: $env:SOATEST_INSTALL_DIR"
+          }
+          Write-Host "Testing $env:ACTION_UNDER_TEST on $env:RUNNER_NAME; invocation $env:VALIDATION_RUN_ID"
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '17'
+
+      - name: Build ParaBank
+        run: |
+          & mvn -B -ntp -DskipTests package
+          if ($LASTEXITCODE -ne 0) { throw 'ParaBank build failed.' }
+
+      - name: Prepare isolated SOAtest settings and select environment
+        env:
+          PRIVATE_SETTINGS: ${{ secrets.SOATEST_SETTINGS }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Path .runtime -Force | Out-Null
+          $settings = "report.test_suites_only=false`r`n"
+          $jdbc = (Resolve-Path 'target/parabank/WEB-INF/lib/hsqldb-*-jdk8.jar').Path.Replace('\', '/')
+          $settings += "datasources.jdbc.classpath=$jdbc`r`n"
+          if ($env:SOATEST_LOCAL_SETTINGS) {
+            $settings += [IO.File]::ReadAllText($env:SOATEST_LOCAL_SETTINGS) + "`r`n"
+          }
+          if ($env:PRIVATE_SETTINGS) { $settings += $env:PRIVATE_SETTINGS + "`r`n" }
+          [IO.File]::WriteAllText((Join-Path $env:GITHUB_WORKSPACE '.runtime/ci-settings.properties'), $settings, (New-Object Text.UTF8Encoding($false)))
+          $allowed = @('Smoke.tst', 'PB-ParabankServices-v3.tst', 'PB-WebUI-v3.tst', 'PB-Bookstore1.tst', 'PB-Bookstore2.tst')
+          if ($env:SOATEST_SUITE -notin $allowed) { throw 'Unsupported SOAtest suite.' }
+          $project = if ($env:SOATEST_SUITE -like 'PB-Bookstore*') { 'Bookstore' } else { 'TestAssets' }
+          $environment = switch ($env:SOATEST_SUITE) {
+            'Smoke.tst' { 'localhost' }
+            'PB-WebUI-v3.tst' { 'Default localhost Environment' }
+            default { 'localhost:8080' }
+          }
+          "SOATEST_RESOURCE=$project/$env:SOATEST_SUITE" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+          "SOATEST_ENVIRONMENT=$environment" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Import SOAtest projects
+        run: ./scripts/Initialize-Soatest.ps1 -InstallDir $env:SOATEST_INSTALL_DIR
+
+      - name: Start ParaBank and wait for readiness
+        run: ./scripts/Start-Parabank.ps1
+
+      - name: Run SOAtest action under test
+        id: soatest
+        uses: parasoft/run-soatest-action@master
+        with:
+          installDir: ${{ env.SOATEST_INSTALL_DIR }}
+          soatestWorkspace: ${{ github.workspace }}/.runtime/soatest-workspace
+          testConfig: builtin://Demo Configuration
+          resource: ${{ env.SOATEST_RESOURCE }}
+          settings: .runtime/ci-settings.properties
+          report: .runtime/reports/ci/report.xml
+          reportFormat: xml,html
+          environment: ${{ env.SOATEST_ENVIRONMENT }}
+          convertReportToXUnit: 'true'
+          additionalParams: >-
+            -include **/${{ env.SOATEST_SUITE }} -fail
+
+      - name: Verify execution and xUnit report
+        run: ./scripts/Test-Reports.ps1
+
+      - name: Stop ParaBank started by this run
+        if: always()
+        run: ./scripts/Stop-Parabank.ps1
+
+      - name: Upload reports and service logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parabank-soatest-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: warn
+          include-hidden-files: true
+          path: |
+            .runtime/reports/ci/
+            .runtime/parabank.stdout.log
+            .runtime/parabank.stderr.log
+
+      - name: Remove private execution settings
+        if: always()
+        run: Remove-Item .runtime/ci-settings.properties -Force -ErrorAction SilentlyContinue

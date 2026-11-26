@@ -1,6 +1,21 @@
 # Introduction
 The ParaBank demo web application and associated web services (SOAP and REST) from Parasoft.
 
+# Run GitHub SOAtest tests on the local runner
+
+On Windows, double-click `run-action-test.bat`, or run:
+
+```powershell
+.\run-action-test.bat -ActionRef master
+```
+
+This starts `D:\Github-runner\parabank-soatest-runner\run.cmd`, updates and commits the
+SOAtest workflow, pushes to `master`, and waits for the GitHub Actions result.
+It uses the `self-hosted` label and the runner's registered name (`CD-LYAO-02`) as a
+specific scheduling label. The default suite is `Smoke.tst`, targeting port `8080`.
+See [scripts/README.md](scripts/README.md) for prerequisites, suite selection, credentials,
+and `-PrepareOnly` to review the workflow locally without pushing.
+
 # Run locally
 
 Requires a JDK (Java 11 or 17 recommended) and Maven 3.6.3 or later on `PATH`.

@@ -1,5 +1,6 @@
 *.bak
 /target/
+/.runtime/
 hs_err_*.log
 *.log
 
