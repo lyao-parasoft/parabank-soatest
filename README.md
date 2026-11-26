@@ -1,8 +1,49 @@
 # Introduction
 The ParaBank demo web application and associated web services (SOAP and REST) from Parasoft.
 
+# Run locally
+
+Requires a JDK (Java 11 or 17 recommended) and Maven 3.6.3 or later on `PATH`.
+The repository includes Tomcat 9; no separate database or message broker is required.
+
+From the project directory, run:
+
+```bat
+:: Windows (Command Prompt or PowerShell)
+.\start.bat
+```
+
+```bash
+# Linux / macOS / Git Bash
+bash ./start.sh
+```
+
+The scripts build the application and run it in the bundled Tomcat using Maven Cargo.
+Open http://localhost:8080/parabank/ after Tomcat finishes starting.
+The sample account is `john` / `demo`.
+Press `Ctrl+C` in the startup terminal to stop the server.
+
+The equivalent Maven command is:
+
+```bash
+mvn -DskipTests package cargo:run
+```
+
+To use another HTTP port, pass `-Dcargo.servlet.port=18080` to the script or Maven command.
+The runtime configuration, deployed application, logs and database files are stored under
+`target/cargo/`; `mvn clean` removes that local runtime data. The first build requires
+network access to download Maven dependencies. Ports `9001` (HyperSQL), `61616` (ActiveMQ),
+and `8205` (Tomcat shutdown) must also be available.
+
 # Build and Install
-1. Build the ParaBank application using Maven (`mvn clean install`). After a successful build, deploy the `parabank.war` (located in `/target`) into an Apache Tomcat container.
+
+Build and run the unit tests with `mvn clean package`. The deployable application is
+`target/parabank.war`. To install it into the local Maven repository without running the
+browser integration tests, use `mvn clean install -DskipITs`.
+The separate SOAtest project remains available with `mvn -f soatest/pom.xml ...` and
+requires a configured SOAtest installation.
+
+1. Deploy `target/parabank.war` into an Apache Tomcat 9 container, or use the local startup scripts above.
 
 NOTE: if using the coverage agent when running the functional/manual tests (see below), execute the build using "mvn -Dmaven.test.skip=true clean install jtest:monitor"
 
