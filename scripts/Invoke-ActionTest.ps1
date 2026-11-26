@@ -89,7 +89,7 @@ try {
     $yaml = Replace-WorkflowLine $yaml '^  EXPECTED_RUNNER: [^\n]*$' "  EXPECTED_RUNNER: '$runnerName'"
     $yaml = Replace-WorkflowLine $yaml '^  SOATEST_INSTALL_DIR: [^\n]*$' ("  SOATEST_INSTALL_DIR: '" + $InstallDir.Replace("'", "''") + "'")
     $yaml = Replace-WorkflowLine $yaml '^  SOATEST_SUITE: [^\n]*$' ('  SOATEST_SUITE: ${{ inputs.suite || ''' + $Suite + ''' }}')
-    $yaml = Replace-WorkflowLine $yaml '^    runs-on: [^\n]*$' "    runs-on: [self-hosted, Windows, X64, $runnerName]"
+    $yaml = Replace-WorkflowLine $yaml '^    runs-on: \[self-hosted,[^\n]*$' "    runs-on: [self-hosted, Windows, X64, $runnerName]"
     $yaml = Replace-WorkflowLine $yaml '^        uses: [^\n]+/run-soatest-action@[^\n]*$' "        uses: $action"
     [IO.File]::WriteAllText($file, $yaml, (New-Object Text.UTF8Encoding($false)))
     Write-Host "Prepared action-test.yml: $action; suite=$Suite; invocation=$runId"

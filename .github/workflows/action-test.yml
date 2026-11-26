@@ -1,5 +1,5 @@
 name: ParaBank SOAtest action test
-run-name: 'ParaBank SOAtest upgrade_dependency / 20261126T090928164Z-8c54124a'
+run-name: 'ParaBank SOAtest upgrade_dependency / 20261126T093026285Z-628fabee'
 
 on:
   push:
@@ -28,7 +28,7 @@ concurrency:
 
 env:
   ACTION_UNDER_TEST: 'parasoft/run-soatest-action@upgrade_dependency'
-  VALIDATION_RUN_ID: '20261126T090928164Z-8c54124a'
+  VALIDATION_RUN_ID: '20261126T093026285Z-628fabee'
   EXPECTED_RUNNER: 'CD-LYAO-02'
   SOATEST_INSTALL_DIR: 'C:\Program Files\Parasoft\SOAtest & Virtualize\2026.2'
   SOATEST_SUITE: ${{ inputs.suite || 'Smoke.tst' }}
@@ -118,6 +118,15 @@ jobs:
         if: always()
         run: ./scripts/Stop-Parabank.ps1
 
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          if-no-files-found: warn
+          include-hidden-files: true
+          path: .runtime/reports/ci/
+
       - name: Upload reports and service logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -133,3 +142,31 @@ jobs:
       - name: Remove private execution settings
         if: always()
         run: Remove-Item .runtime/ci-settings.properties -Force -ErrorAction SilentlyContinue
+
+  publish:
+    name: Publish Reports
+    needs: [test-soatest]
+    if: always()
+    permissions:
+      checks: write
+      pull-requests: write
+      # only required for workflows in private repositories
+      contents: read
+      issues: read
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifacts  # The built project is downloaded into the 'site' folder.
+        uses: actions/download-artifact@v4
+        with:
+          name: reports
+          path: reports
+
+      - name: Upload results
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2
+        if: always()
+        with:
+          files: |
+            reports\report-xunit.xml
