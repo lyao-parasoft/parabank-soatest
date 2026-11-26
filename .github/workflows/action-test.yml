@@ -1,5 +1,5 @@
 name: ParaBank SOAtest action test
-run-name: 'ParaBank SOAtest master / 20261126T082304690Z-bac562fd'
+run-name: 'ParaBank SOAtest upgrade_dependency / 20261126T090928164Z-8c54124a'
 
 on:
   push:
@@ -27,8 +27,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  ACTION_UNDER_TEST: 'parasoft/run-soatest-action@master'
-  VALIDATION_RUN_ID: '20261126T082304690Z-bac562fd'
+  ACTION_UNDER_TEST: 'parasoft/run-soatest-action@upgrade_dependency'
+  VALIDATION_RUN_ID: '20261126T090928164Z-8c54124a'
   EXPECTED_RUNNER: 'CD-LYAO-02'
   SOATEST_INSTALL_DIR: 'C:\Program Files\Parasoft\SOAtest & Virtualize\2026.2'
   SOATEST_SUITE: ${{ inputs.suite || 'Smoke.tst' }}
@@ -97,7 +97,7 @@ jobs:
 
       - name: Run SOAtest action under test
         id: soatest
-        uses: parasoft/run-soatest-action@master
+        uses: parasoft/run-soatest-action@upgrade_dependency
         with:
           installDir: ${{ env.SOATEST_INSTALL_DIR }}
           soatestWorkspace: ${{ github.workspace }}/.runtime/soatest-workspace
